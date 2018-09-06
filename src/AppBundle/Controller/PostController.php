@@ -30,6 +30,7 @@ class PostController extends Controller
     public function createPostsAction(Request $request)
     {  $post= new Post;
         $form=$this->createFormBuilder($post)
+
         ->add('title', TextType::class, array('attr' => array('class' => 'form-control')))
         ->add('description', TextareaType::class, array('attr' => array('class' => 'form-control')))
         ->add('category', TextType::class, array('attr' => array('class' => 'form-control')))
@@ -65,12 +66,34 @@ class PostController extends Controller
          /**
      * @Route("/edit/{id}", name="edit_post_route")
      */
-    public function editPostsAction($id)
-    {    echo '<pre>';
-        // print_r($posts);
-         echo '</pre>';
+    public function editPostsAction(Request $request, $id)
+    {   $post = $this->getDoctrine()->getRepository('AppBundle:Post')->find($id);
+        $post->setTitle($post->getTitle());
+        $post->setDescription($post->getDescription());
+        $post->setCategory($post->getCategory());
+         $form=$this->createFormBuilder($post)
+        ->add('title', TextType::class, array('attr' => array('class' => 'form-control')))
+        ->add('description', TextareaType::class, array('attr' => array('class' => 'form-control')))
+        ->add('category', TextType::class, array('attr' => array('class' => 'form-control')))
+        ->add('save', SubmitType::class, array('label' =>'Edit Post', 'attr'=>array('class' => 'btn-btn-primary')))
+        ->getForm();
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {   $title=$form['title']->getData();
+            $description=$form['description']->getData();
+            $category=$form['category']->getData();
+            $em=$this->getDoctrine()->getManager();
+            $post=$em->getRepository('AppBundle:post')->find($id);
+            $post->setTitle($title);
+            $post->setDescription($description);
+            $post->setCategory($category);
+        
+            $em->flush();
+            $this->addFlash('message','Post Edited');
+            return $this->redirectToRoute('view_posts_route');
+        }
        
-        return $this->render('pages/edit.html.twig');
+        return $this->render('pages/edit.html.twig',['form'=>$form->createView()]);
     }
             /**
      * @Route("/delete/{id}", name="delete_post_route")
