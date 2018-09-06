@@ -1,1 +1,8 @@
-<h1> Create Posts</h1>
+
+{{include('pages/inc/header.html.twig')}}
+ <a href="{{ absolute_url(asset('') ) }}app_dev.php/post" class="btn btn-danger ">Back</a>
+ <h1> Create Post</h1>
+ {{form_start(form)}}
+  {{form_widget(form)}}
+   {{form_end(form)}}
+ {{include('pages/inc/footer.html.twig')}}
