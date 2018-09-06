@@ -37,41 +37,39 @@ class PostController extends Controller
         ->getForm();
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
-        {
-            $title=$form['title']->getData();
+        {   $title=$form['title']->getData();
             $description=$form['description']->getData();
             $category=$form['category']->getData();
-          
             $post->setTitle($title);
             $post->setDescription($description);
             $post->setCategory($category);
-
             $em=$this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
-
             $this->addFlash('message','Post Created');
             return $this->redirectToRoute('view_posts_route');
-
-
         }
-
        return $this->render('pages/create.html.twig', ['form'=>$form->createView()]);
     }
      /**
      * @Route("/view/{id}", name="view_post_route")
      */
     public function viewPostsAction($id)
-    {
-        echo $id;
-        return $this->render('pages/view.html.twig');
+    {   $post = $this->getDoctrine()->getRepository('AppBundle:Post')->find($id);
+       // echo '<pre>';
+      //  print_r($posts);
+      //  echo '</pre>';
+      //  exit();
+        return $this->render('pages/view.html.twig',['post'=>$post]);
     }
          /**
      * @Route("/edit/{id}", name="edit_post_route")
      */
     public function editPostsAction($id)
-    {
-        echo $id;
+    {    echo '<pre>';
+        // print_r($posts);
+         echo '</pre>';
+       
         return $this->render('pages/edit.html.twig');
     }
             /**
