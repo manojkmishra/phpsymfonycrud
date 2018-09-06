@@ -1,21 +1,29 @@
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>Posts Crud</title>
-        <link rel="stylesheet" href="{{ absolute_url(asset('css/bootstrap.css') ) }}" />
-    </head>
-    <body>
-    <h1> All Posts-index.html.twig</h1>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">All Posts- CRUD</a>
-  <div class="collapse navbar-collapse" id="navbarColor01">
-
-  </div>
-</nav>
-       <div class="container">
-
-       </div>
-    </body>
-</html>
+{{include('pages/inc/header.html.twig')}}
+<h3> View Posts </h3>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+       <th scope="col">Description</th>
+      <th scope="col">Category</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr class="table-success">
+      <th scope="row">1</th>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>
+      <a href="" class="btn btn-primary btn-xs">View</a>
+      <a href="" class="btn btn-primary btn-xs">Edit</a>
+      <a href="" class="btn btn-danger btn-xs">Delete</a>
+      </td>
+    </tr>
+  
+   
+  </tbody>
+</table> 
+{{include('pages/inc/footer.html.twig')}}
