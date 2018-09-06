@@ -1,69 +1,48 @@
-Symfony Standard Edition
-========================
+## Symfony-MySQL CRUD (reactJS, redux)  
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+### Installation steps  
+1.Clone repo  
+2.Run composer install in the root project  
+3.Start MySQL server  
+4.php bin/console doctrine:database:create  
+5.php bin/console doctrine:schema:update --force  
+6.php bin/console server:run  
+7.Open http://127.0.0.1:8000/app_dev.php/post  
+8.Page will look like as below  
+![enter image description here](https://github.com/manojkmishra/phpsymfonycrud/blob/master/screenshots/firstpage.PNG)  
+9.create post by clicking create button  
+![enter image description here](https://github.com/manojkmishra/phpsymfonycrud/blob/master/screenshots/create.PNG)  
+10.After creation page gets redirected to all posts page with success message   
+![enter image description here](https://github.com/manojkmishra/phpsymfonycrud/blob/master/screenshots/allposts.PNG)  
+11.View buttons allows to see the contents of single post     
+![enter image description here](https://github.com/manojkmishra/phpsymfonycrud/blob/master/screenshots/viewpost.PNG)  
+11.Edit buttons allows to edit post     
+![enter image description here](https://github.com/manojkmishra/phpsymfonycrud/blob/master/screenshots/editpost.PNG)  
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+### Development steps  
+1.Install using- composer create-project symfony/framework-standard-edition symfonytutil "3.1.*"  
+2.Run the server (php bin/console server:run) or using xampp etc(in this case put symfonycrud folder inside htdocs)  
+![enter image description here](https://github.com/manojkmishra/phpsymfonycrud/blob/master/screenshots/1.PNG)  
+3.php bin/console generate:controller  (create new controller, enter the options as below)   
+  Controller name: AppBundle:Post  
+  Routing format (php, xml, yml, annotation) [annotation]:  
+  Template format (twig, php) [twig]:  
+O/p  
+  created .\src\AppBundle/Controller/PostController.php  
+  created .\src\AppBundle/Tests/Controller/  
+  created .\src\AppBundle/Tests/Controller/PostControllerTest.php  
+4.Create database  
+php bin/console doctrine:database:create  
+php bin/console doctrine:generate:entity  
+php bin/console doctrine:schema:update --force  
+![enter image description here](https://github.com/manojkmishra/phpsymfonycrud/blob/master/screenshots/2.PNG)  
+5.Write login in controller and twig files 
+![enter image description here](https://github.com/manojkmishra/phpsymfonycrud/blob/master/screenshots/3.PNG)  
+6.Run the server and check  
+![enter image description here](https://github.com/manojkmishra/phpsymfonycrud/blob/master/screenshots/4.PNG)  
 
-What's inside?
---------------
 
-The Symfony Standard Edition is configured with the following defaults:
 
-  * An AppBundle you can use to start coding;
+  
 
-  * Twig as the only configured template engine;
 
-  * Doctrine ORM/DBAL;
-
-  * Swiftmailer;
-
-  * Annotations enabled for everything.
-
-It comes pre-configured with the following bundles:
-
-  * **FrameworkBundle** - The core Symfony framework bundle
-
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
-
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
-
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
-
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
-
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
-
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
-    capabilities
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/3.1/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/3.1/doctrine.html
-[8]:  https://symfony.com/doc/3.1/templating.html
-[9]:  https://symfony.com/doc/3.1/security.html
-[10]: https://symfony.com/doc/3.1/email.html
-[11]: https://symfony.com/doc/3.1/logging.html
-[12]: https://symfony.com/doc/3.1/assetic/asset_management.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
