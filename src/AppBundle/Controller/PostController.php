@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Post;
 
 class PostController extends Controller
 {
@@ -12,8 +13,11 @@ class PostController extends Controller
      * @Route("/post", name="view_posts_route")
      */
     public function showAllPostsAction(Request $request)
-    {
-       return $this->render('pages/index.html.twig');
+    {  $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findAll();
+       // echo '<pre>';
+       // print_r($posts);
+       // echo '</pre>';
+       return $this->render('pages/index.html.twig',['posts'=>$posts]);
     }
      /**
      * @Route("/create", name="create_post_route")
