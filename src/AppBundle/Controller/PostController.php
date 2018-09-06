@@ -83,7 +83,7 @@ class PostController extends Controller
             $description=$form['description']->getData();
             $category=$form['category']->getData();
             $em=$this->getDoctrine()->getManager();
-            $post=$em->getRepository('AppBundle:post')->find($id);
+            $post=$em->getRepository('AppBundle:Post')->find($id);
             $post->setTitle($title);
             $post->setDescription($description);
             $post->setCategory($category);
@@ -99,9 +99,15 @@ class PostController extends Controller
      * @Route("/delete/{id}", name="delete_post_route")
      */
     public function deletePostsAction($id)
-    {
-        echo $id;
-        return $this->render('pages/delete.html.twig');
+    {   //em--->entity manager
+        //echo $id;
+        $em=$this->getDoctrine()->getManager();
+        $post=$em->getRepository('AppBundle:Post')->find($id);
+        $em->remove($post);
+        $em->flush();
+        $this->addFlash('message','Post deleted');
+        return $this->redirectToRoute('view_posts_route');
+      //  return $this->render('pages/delete.html.twig');
     }
 }
 
