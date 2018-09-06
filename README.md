@@ -1,4 +1,4 @@
-## Symfony-MySQL CRUD (reactJS, redux)  
+## Symfony-MySQL CRUD 
 
 ### Installation steps  
 1.Clone repo  
