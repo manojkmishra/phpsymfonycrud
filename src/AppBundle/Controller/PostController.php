@@ -9,11 +9,42 @@ use Symfony\Component\HttpFoundation\Request;
 class PostController extends Controller
 {
      /**
-     * @Route("/post", name="View all posts")
+     * @Route("/post", name="view_posts_route")
      */
-    public function indexAction(Request $request)
+    public function showAllPostsAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('pages/index.html.twig');
+       return $this->render('pages/index.html.twig');
+    }
+     /**
+     * @Route("/create", name="create_post_route")
+     */
+    public function createPostsAction(Request $request)
+    {
+       return $this->render('pages/create.html.twig');
+    }
+     /**
+     * @Route("/view/{id}", name="view_post_route")
+     */
+    public function viewPostsAction($id)
+    {
+        echo $id;
+        return $this->render('pages/view.html.twig');
+    }
+         /**
+     * @Route("/edit/{id}", name="edit_post_route")
+     */
+    public function editPostsAction($id)
+    {
+        echo $id;
+        return $this->render('pages/edit.html.twig');
+    }
+            /**
+     * @Route("/delete/{id}", name="delete_post_route")
+     */
+    public function deletePostsAction($id)
+    {
+        echo $id;
+        return $this->render('pages/delete.html.twig');
     }
 }
+
